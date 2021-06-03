@@ -4,8 +4,38 @@
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
+	function setSearchEngine() {
+            var ele = document.getElementsByName('engine');
+            let actionURL;
+            let radioOutput;
+            for(i = 0; i < ele.length; i++) {
+                if(ele[i].checked){
+                console.log(ele[i].value);
+				radioOutput = ele[i].value;}
+
+            }
+			if (radioOutput === "google") {
+               actionURL = "https://www.google.com/search";
+            } else if (radioOutput === "duckDuckGo") {
+               actionURL = "https://duckduckgo.com/";
+            } else if (radioOutput === "bing") {
+               actionURL = "https://www.bing.com/search";
+            } else if (radioOutput === "ask") {
+               actionURL = "https://www.ask.com/web";
+            }
+			console.log("actionURL: "+actionURL);
+			let searchValue = document.getElementById('searchName').value;
+			console.log("searchValue: "+searchValue);
+			actionURL += "?q="+searchValue;
+			let searchForm = document.getElementById('searchForm');
+			searchForm.setAttribute("action",actionURL);
+        }
+			
     window.addEventListener("load", function(){
-        // TODO: register the handler
+		// TODO: register the handler
+		let form = document.querySelector("form");
+         form.addEventListener("submit",setSearchEngine);
+        
     });
 	</script>
 </head>
